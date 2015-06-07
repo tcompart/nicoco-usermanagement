@@ -1,0 +1,6 @@
+.grunt
+node_modules
+.idea
+.tmp
+dist
+src/components

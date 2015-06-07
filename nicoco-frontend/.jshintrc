@@ -1,0 +1,30 @@
+{
+	"curly": true,
+	"eqeqeq": true,
+	"immed": true,
+	"latedef": true,
+	"newcap": true,
+	"noarg": true,
+	"indent": 2,
+	"sub": true,
+	"undef": true,
+	"boss": true,
+	"eqnull": true,
+	"browser": true,
+	"globals": {
+		"console": true,
+		"alert": true,
+		"require": true,
+		"define": true,
+		"requirejs": true,
+		"describe": true,
+		"expect": true,
+		"it": true,
+		"beforeEach": true,
+		"afterEach": true,
+		"angular": true,
+		"module": true,
+		"inject": true,
+		"spyOn": true
+	}
+}

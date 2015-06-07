@@ -1,0 +1,36 @@
+{
+  "name": "nicoco",
+  "version": "0.1.0",
+  "authors": [
+    "Compart",
+    "Torsten <torsten.compart@gmail.com>"
+  ],
+  "description": "nicoco website",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "nicoco",
+    "photos",
+    "blog",
+    "html",
+    "angular"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "http://nicoco.de",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angularjs": "~1.4.0",
+    "bootstrap": "~3.3.4",
+    "grunt": "~0.4.5"
+  }
+}
