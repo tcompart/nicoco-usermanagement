@@ -268,12 +268,12 @@ module.exports = function (grunt) {
 				}
 			},
 			styles: {
-				files: '<%= config.src %>/**/*.scss',
-				taskes: ['']
+				files: '<%= config.src %>/**/*.less',
+				tasks: ['buildStyles']
 			},
 			htmls: {
 				files: ['<%= config.src %>/**/*.html'],
-				taskes: ['injector', 'buildHtml']
+				tasks: ['injector', 'buildHtml']
 			},
 			scripts: {
 				files: ['<%= config.src %>/**/*.js'],
@@ -310,15 +310,20 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', ['package']);
 	grunt.registerTask('buildHtml', [
+		'clean:server',
+		'injector',
 		'ngtemplates:dist',
-		'copy:dist'
+		'useminPrepare',
+		'copy:dist',
+		'usemin',
+		'htmlmin'
 	]);
 	grunt.registerTask('buildStyles', [
-		'less',
-		'postcss',
-		'usemin:css'
+		'clean:server',
+		'package'
 	]);
 	grunt.registerTask('buildScripts', [
+		'clean:server',
 		'ngAnnotate',
 		'injector',
 		'ngtemplates:dist',
