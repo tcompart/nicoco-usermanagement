@@ -145,7 +145,6 @@ module.exports = function (grunt) {
 					'<%= config.dist %>/scripts/{,*/}*.js',
 					'<%= config.dist %>/styles/{,*/}*.css',
 					'<%= config.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-					'!<%= config.dist %>/images/slides/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
 					'<%= config.dist %>/styles/fonts/*'
 				]
 			}
@@ -175,7 +174,12 @@ module.exports = function (grunt) {
 		// Performs rewrites based on filerev and the useminPrepare configuration
 		usemin: {
 			options: {
-				assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
+				assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images'],
+				patterns: {
+					js: [
+						[/(images\/.*?\.(?:gif|jpeg|jpg|png|webp))/gm, 'Update the JS to reference our revved images']
+					]
+				}
 			},
 			html: ['<%= config.dist %>/**/*.html'],
 			js: ['<%= config.dist %>/**/*.js'],
