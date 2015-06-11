@@ -20,14 +20,8 @@
 	<!-- endbuild -->
 
 </head>
-<body ng-app="nicoco">
-
-<header role="banner">
-	<img id="logo-main" src="images/logo.jpg" />
-	<carousel></carousel>
-	<navigation></navigation>
-</header>
-
+<body ng-app="nicoco" ng-cloak="">
+	<div ui-view></div>
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
@@ -85,8 +79,9 @@
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="components/jquery/dist/jquery.js"></script>
-<script src="components/angularjs/angular.js"></script>
+<script src="components/angular/angular.js"></script>
 <script src="components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="components/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
