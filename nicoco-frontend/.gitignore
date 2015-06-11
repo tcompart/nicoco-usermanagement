@@ -2,5 +2,7 @@
 node_modules
 .idea
 .tmp
+.DS_Store
 dist
 src/components
+src/app/templates/template.js

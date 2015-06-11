@@ -24,14 +24,15 @@
 
 <header role="banner">
 	<img id="logo-main" src="images/logo.jpg" />
+	<carousel></carousel>
 	<nav id="navbar-primary" class="navbar navbar-default" role="navigation">
 		<div class="container">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Gallerien</a></li>
-					<li><a href="#">Über mich</a></li>
-					<li><a href="#">Angebote</a></li>
-					<li><a href="#">Blog</a></li>
-				</ul>
+			<ul class="nav navbar-nav">
+				<li><a href="#">Gallerien</a></li>
+				<li><a href="#">Über mich</a></li>
+				<li><a href="#">Angebote</a></li>
+				<li><a href="#">Blog</a></li>
+			</ul>
 		</div>
 	</nav>
 </header>
@@ -84,7 +85,7 @@
 	<hr>
 
 	<footer>
-		<p>&copy; Company 2014</p>
+		<p>&copy; nicoco 2015</p>
 	</footer>
 </div>
 <!-- /container -->
@@ -101,7 +102,10 @@
 <!-- build:js scripts/app.js -->
 <!-- injector:js -->
 <script src="app/module.js"></script>
+<script src="app/carousel/carouselDirective.js"></script>
+<script src="app/carousel/slides.js"></script>
 <script src="app/gallery/galleryDirective.js"></script>
+<script src="app/templates/template.js"></script>
 <!-- endinjector -->
 <!-- endbuild -->
 </body>

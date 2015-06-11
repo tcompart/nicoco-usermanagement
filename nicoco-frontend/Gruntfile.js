@@ -36,7 +36,7 @@ module.exports = function (grunt) {
 					relative: false,
 					ignorePath: './tmp/'
 				},
-				files: {'<%= config.htmlTemplate %>': ['<%= config.temp %>/**/*.css']}
+				files: {'<%= config.htmlTemplate %>': ['<%= config.temp %>/styles/*.css']}
 			}
 		},
 		wiredep: {
@@ -64,9 +64,10 @@ module.exports = function (grunt) {
 		},
 		ngtemplates: {
 			options: {
-				module: 'SourceClear',
+				module: 'nicoco',
 				url: function (templateString) {
-					return '/' + templateString;
+					var splittedPath = templateString.split('/');
+					return '/'+ splittedPath[splittedPath.length - 1];
 				}
 			},
 			serve: {
@@ -76,7 +77,7 @@ module.exports = function (grunt) {
 					'!index.html',
 					'!404.html'
 				],
-				dest: '<%= config.temp %>/scripts/templates.js'
+				dest: '<%= config.src %>/app/templates/template.js'
 			},
 			dist: {
 				cwd: '<%= config.src %>',
@@ -85,7 +86,7 @@ module.exports = function (grunt) {
 					'!index.html',
 					'!404.html'
 				],
-				dest: '<%= config.temp %>/scripts/templates.js',
+				dest: '<%= config.src %>/app/templates/template.js',
 				options: {
 					usemin: 'scripts/app.js' // <~~ This came from the <!-- build:js --> block
 				}
@@ -135,21 +136,16 @@ module.exports = function (grunt) {
 					cwd: '<%= config.temp %>/images',
 					dest: '<%= config.dist %>/images',
 					src: ['generated/*']
-				}, {
-					expand: true,
-					cwd: '<%= bower.directory %>/components-font-awesome/fonts',
-					src: '*',
-					dest: '<%= config.dist %>/fonts'
 				}]
 			}
 		},
 		filerev: {
 			dist: {
 				src: [
-					'<%= config.temp %>/scripts/templates.js',
 					'<%= config.dist %>/scripts/{,*/}*.js',
 					'<%= config.dist %>/styles/{,*/}*.css',
 					'<%= config.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+					'!<%= config.dist %>/images/slides/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
 					'<%= config.dist %>/styles/fonts/*'
 				]
 			}
@@ -179,7 +175,7 @@ module.exports = function (grunt) {
 		// Performs rewrites based on filerev and the useminPrepare configuration
 		usemin: {
 			options: {
-				dirs: ['<%= config.dist %>', '<%= config.dist %>/images']
+				assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
 			},
 			html: ['<%= config.dist %>/**/*.html'],
 			js: ['<%= config.dist %>/**/*.js'],
@@ -265,7 +261,8 @@ module.exports = function (grunt) {
 				files: ['Gruntfile.js', 'config/*.js'],
 				options: {
 					reload: true
-				}
+				},
+				tasks: ['build']
 			},
 			styles: {
 				files: '<%= config.src %>/**/*.less',
@@ -310,36 +307,20 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', ['package']);
 	grunt.registerTask('buildHtml', [
-		'clean:server',
-		'injector',
-		'ngtemplates:dist',
-		'useminPrepare',
-		'copy:dist',
-		'usemin',
-		'htmlmin'
+		'package'
 	]);
 	grunt.registerTask('buildStyles', [
-		'clean:server',
 		'package'
 	]);
 	grunt.registerTask('buildScripts', [
-		'clean:server',
-		'ngAnnotate',
-		'injector',
-		'ngtemplates:dist',
-		'useminPrepare',
-		'concat',
-		'uglify',
-		'copy:dist',
-		'filerev',
-		'usemin:js'
+		'package'
 	]);
 	grunt.registerTask('package', [
 		'clean',
 		'wiredep',
 		'ngAnnotate',
-		'injector',
 		'ngtemplates:dist',
+		'injector',
 		'concurrent:dist',
 		'useminPrepare',
 		'concat',
