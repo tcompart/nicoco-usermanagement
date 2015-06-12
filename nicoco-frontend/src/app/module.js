@@ -2,12 +2,18 @@ angular.module('nicoco', ['ui.router']).config(function ($stateProvider, $urlRou
 
 	$urlRouterProvider.otherwise("/home");
 
-	$stateProvider.state('home', {
+	var home = {
+		name: 'home',
 		url: '/home',
-		template: '<header role="banner">' +
-		'<img id="logo-main" src="images/logo.jpg" />' +
-		'<carousel></carousel>' +
-		'<navigation></navigation>' +
-		'</header>'
-	});
+		templateUrl: '/home.html'
+	};
+
+	var gallery = {
+		name: 'gallery',
+		url: '/gallery',
+		templateUrl: '/gallery.html'
+	};
+
+	$stateProvider.state(home);
+	$stateProvider.state(gallery);
 });
