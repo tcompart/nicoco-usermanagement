@@ -32,6 +32,18 @@
     "angular": "~1.4.0",
     "bootstrap": "~3.3.4",
     "grunt": "~0.4.5",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "ekko-lightbox": "~3.3.0",
+    "masonry": "~3.3.0",
+    "imagesloaded": "~3.1.8",
+    "more-or-less": "~1.5.1"
+  },
+  "overrides": {
+    "outlayer": {
+      "main": [
+        "item.js",
+        "outlayer.js"
+      ]
+    }
   }
 }

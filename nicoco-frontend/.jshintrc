@@ -19,6 +19,7 @@
 		"requirejs": true,
 		"describe": true,
 		"expect": true,
+		"$": true,
 		"it": true,
 		"beforeEach": true,
 		"afterEach": true,

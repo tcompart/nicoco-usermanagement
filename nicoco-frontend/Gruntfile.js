@@ -281,6 +281,13 @@ module.exports = function (grunt) {
 				tasks: ['buildScripts']
 			}
 		},
+		sprite:{
+			all: {
+				src: '<%= config.src %>/images/gallery/{,*/}*.{png,jpg,jpeg,gif}',
+				dest: '<%= config.dist %>/images/all.png',
+				destCss: '<%= config.dist %>/styles/sprites.css'
+			}
+		},
 		clean: {
 			dist: {
 				files: [{
