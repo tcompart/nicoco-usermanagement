@@ -1,6 +1,6 @@
 /*globals Masonry, imagesLoaded */
 angular.module('nicoco')
-	.directive('masonry', ['$log', function ($log) {
+	.directive('masonry', [function () {
 		'use strict';
 		return {
 			restrict: 'E',
@@ -10,7 +10,7 @@ angular.module('nicoco')
 			template: '<section id="photos"><div class="grid-item" ng-repeat="entry in input">' +
 			'<gallery-item image-src="{{ entry.src }}" image-description="{{entry.desc}}"></gallery-item></div></section>'
 		};
-	}]).directive('galleryItem', ['$log',function ($log) {
+	}]).directive('galleryItem', ['$log', function ($log) {
 		'use strict';
 		return {
 			restrict: 'E',
@@ -30,7 +30,6 @@ angular.module('nicoco')
 						gallery: 'multiimages'
 					});
 				});
-				$log.info('image: ', $scope.imageSrc);
 				$scope.openLightbox = function ($event) {
 					$event.stopPropagation();
 				};
