@@ -4,6 +4,20 @@
 @import "_imagecarousel";
 @import "_gallery";
 
+/* centered columns styles */
+.row-centered {
+	text-align:center;
+}
+.col-centered {
+	display:inline-block;
+	float:none;
+	/* reset the text-align */
+	text-align:left;
+	/* inline-block space fix */
+	margin-right:-4px;
+}
+
+
 .box-shadow(@style, @c) when (iscolor(@c)) {
 	-webkit-box-shadow: @style @c;
 	box-shadow:         @style @c;

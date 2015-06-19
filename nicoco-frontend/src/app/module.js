@@ -8,6 +8,24 @@ angular.module('nicoco', ['ui.router']).config(function ($stateProvider, $urlRou
 		templateUrl: '/home.html'
 	};
 
+	var aboutme = {
+		name: 'aboutme',
+		url: '/aboutme',
+		templateUrl: '/aboutme.html'
+	};
+	
+	var offer = {
+		name: 'offer',
+		url: '/offer',
+		templateUrl: '/offer.html'
+	};
+	
+	var blog = {
+		name: 'blog',
+		url: '/blog',
+		templateUrl: '/blog.html'
+	};
+	
 	var gallery = {
 		name: 'gallery',
 		url: '/gallery',
@@ -23,6 +41,8 @@ angular.module('nicoco', ['ui.router']).config(function ($stateProvider, $urlRou
 			});
 			
 			$scope.familylove = [
+				{ src: 'images/familylove/29.jpg', desc: ''},
+				{ src: 'images/familylove/30.jpg', desc: ''},
 				{ src: 'images/familylove/1.jpg', desc: ''},
 				{ src: 'images/familylove/2.jpg', desc: ''},
 				{ src: 'images/familylove/3.jpg', desc: ''},
@@ -110,4 +130,7 @@ angular.module('nicoco', ['ui.router']).config(function ($stateProvider, $urlRou
 
 	$stateProvider.state(home);
 	$stateProvider.state(gallery);
+	$stateProvider.state(aboutme);
+	$stateProvider.state(offer);
+	$stateProvider.state(blog);
 });
