@@ -7,7 +7,7 @@ angular.module('nicoco').directive('navigation', [function () {
 				{title: 'Gallerien', link: '#/gallery'},
 				{title: 'Über mich', link: '#/aboutme'},
 				{title: 'Angebote', link: '#/offer'},
-				{title: 'Blog', link: '#/blog'}
+				{title: 'Blog', link: '/wordpress/'}
 			];
 		}
 	};
