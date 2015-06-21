@@ -1,4 +1,6 @@
-angular.module('nicoco', ['ui.router']).config(function ($stateProvider, $urlRouterProvider) {
+angular.module('nicoco', ['ui.router'])
+	.constant('wordpress', 'http://nicoco.de/wordpress')
+	.config(function ($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise("/home");
 
@@ -23,7 +25,14 @@ angular.module('nicoco', ['ui.router']).config(function ($stateProvider, $urlRou
 	var blog = {
 		name: 'blog',
 		url: '/blog',
-		templateUrl: '/blog.html'
+		templateUrl: '/blog.html',
+		controller: 'blogCtrl'
+	};
+		
+	var impressum = {
+		name: 'impressum',
+		url: '/impressum',
+		templateUrl: '/impressum.html'
 	};
 
 	var gallery = {
@@ -37,5 +46,5 @@ angular.module('nicoco', ['ui.router']).config(function ($stateProvider, $urlRou
 	$stateProvider.state(gallery);
 	$stateProvider.state(aboutme);
 	$stateProvider.state(offer);
-	$stateProvider.state(blog);
+	$stateProvider.state(impressum);
 });
