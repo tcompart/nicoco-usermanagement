@@ -1,6 +1,6 @@
 angular.module('nicoco', ['ui.router'])
 	.constant('wordpress', 'http://nicoco.de/wordpress')
-	.config(function ($stateProvider, $urlRouterProvider) {
+	.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise("/home");
 
@@ -47,4 +47,4 @@ angular.module('nicoco', ['ui.router'])
 	$stateProvider.state(aboutme);
 	$stateProvider.state(offer);
 	$stateProvider.state(impressum);
-});
+}]);

@@ -189,11 +189,17 @@ module.exports = function (grunt) {
 		},
 		uglify: {
 			options: {
-				mangle: false
+				mangle: true,
+				compress: true
 			}
 		},
 		imagemin: {
 			dist: {
+				options: {
+					cache: false,
+					optimizationLevel: 7,
+					progressive: true
+				},
 				files: [{
 					expand: true,
 					cwd: '<%= config.src %>/images',
