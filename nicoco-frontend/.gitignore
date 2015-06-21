@@ -3,6 +3,7 @@ node_modules
 .idea
 .tmp
 .DS_Store
+npm-debug.log
 dist
 src/components
 src/app/templates/template.js
