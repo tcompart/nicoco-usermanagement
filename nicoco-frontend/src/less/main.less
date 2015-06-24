@@ -6,27 +6,22 @@
 
 /* centered columns styles */
 .row-centered {
-	text-align:center;
+	text-align: center;
 }
+
 .col-centered {
-	display:inline-block;
-	float:none;
+	display: inline-block;
+	float: none;
 	/* reset the text-align */
-	text-align:left;
+	text-align: left;
 	/* inline-block space fix */
-	margin-right:-4px;
+	margin-right: -4px;
 }
 
-
-.box-shadow(@style, @c) when (iscolor(@c)) {
-	-webkit-box-shadow: @style @c;
-	box-shadow:         @style @c;
-}
-.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
-	.box-shadow(@style, rgba(0, 0, 0, @alpha));
-}
-.box {
-	color: saturate(@base, 5%);
-	border-color: lighten(@base, 30%);
-	div { .box-shadow(0 0 5px, 30%) }
+footer {
+	color: #dddddd;
+	font-size: 80%;
+	a {
+		color: #dddddd;
+	}
 }

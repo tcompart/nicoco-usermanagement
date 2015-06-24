@@ -22,13 +22,6 @@ angular.module('nicoco', ['ui.router'])
 		templateUrl: '/offer.html'
 	};
 
-	var blog = {
-		name: 'blog',
-		url: '/blog',
-		templateUrl: '/blog.html',
-		controller: 'blogCtrl'
-	};
-		
 	var impressum = {
 		name: 'impressum',
 		url: '/impressum',

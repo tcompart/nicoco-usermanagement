@@ -3,6 +3,8 @@ module.exports = function (grunt) {
 
 	require('load-grunt-tasks')(grunt);
 
+	var mozjpeg = require('imagemin-mozjpeg');
+	
 	grunt.initConfig({
 
 		pkg: grunt.file.readJSON('package.json'),
@@ -67,7 +69,7 @@ module.exports = function (grunt) {
 				module: 'nicoco',
 				url: function (templateString) {
 					var splittedPath = templateString.split('/');
-					return '/'+ splittedPath[splittedPath.length - 1];
+					return '/' + splittedPath[splittedPath.length - 1];
 				}
 			},
 			serve: {
@@ -177,7 +179,7 @@ module.exports = function (grunt) {
 		usemin: {
 			options: {
 				assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images'],
-				patterns: {
+				patterns: { 
 					js: [
 						[/(images\/.*?\.(?:gif|jpeg|jpg|png|webp))/gm, 'Update the JS to reference our revved images']
 					]
@@ -190,7 +192,34 @@ module.exports = function (grunt) {
 		uglify: {
 			options: {
 				mangle: true,
-				compress: true
+				compress: {
+					dead_code: true,
+					drop_console: true,
+					properties: true,
+					conditionals: true,
+					unused: true,
+					unsafe: true,
+					comparisons: true,
+					evaluate: true,
+					booleans: true,
+					loops: true,
+					if_return: true,
+					join_vars: true,
+					cascade: true,
+					warnings: true,
+					negate_iife: true,
+					pure_getters: true,
+					keep_fargs: true
+				}
+			},
+			generated: {
+				files: [
+					{
+						src: '<%= config.temp %>/concat/scripts/app.js',
+						dest: '<%= config.dist %>/scripts/app.js'
+					}
+					
+				]
 			}
 		},
 		imagemin: {
@@ -223,6 +252,9 @@ module.exports = function (grunt) {
 				files: {
 					'<%= config.dist %>/styles/main.css': [
 						'<%= config.temp %>/styles/{,*/}*.css'
+					],
+					'<%= config.dist %>/styles/vendor.css': [
+						'<%= config.dist %>/styles/vendor.css'
 					]
 				}
 			}
@@ -248,8 +280,8 @@ module.exports = function (grunt) {
 			server: [],
 			test: [],
 			dist: [
-				'imagemin',
-				'svgmin'
+				'newer:imagemin',
+				'newer:svgmin'
 			]
 		},
 		karma: {
@@ -356,6 +388,4 @@ module.exports = function (grunt) {
 		'package',
 		'clean:server'
 	]);
-
-
 };

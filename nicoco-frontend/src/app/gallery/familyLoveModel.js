@@ -24,7 +24,6 @@ angular.module('nicoco').value('familyLove', [
 	{src: 'images/familylove/21.jpg', desc: ''},
 	{src: 'images/familylove/22.jpg', desc: ''},
 	{src: 'images/familylove/23.jpg', desc: ''},
-	{src: 'images/familylove/24.jpg', desc: ''},
 	{src: 'images/familylove/25.jpg', desc: ''},
 	{src: 'images/familylove/26.jpg', desc: ''},
 	{src: 'images/familylove/27.jpg', desc: ''},

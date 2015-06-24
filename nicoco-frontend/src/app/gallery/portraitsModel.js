@@ -1,4 +1,6 @@
 angular.module('nicoco').value('portraits', [
+	{src: 'images/portraits/24.jpg', desc: ''},
+	{src: 'images/portraits/25.jpg', desc: ''},
 	{src: 'images/portraits/1.jpg', desc: ''},
 	{src: 'images/portraits/2.jpg', desc: ''},
 	{src: 'images/portraits/3.jpg', desc: ''},
