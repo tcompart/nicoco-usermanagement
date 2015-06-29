@@ -1,5 +1,14 @@
 angular.module('nicoco', ['ui.router'])
 	.constant('wordpress', 'http://nicoco.de/wordpress')
+	.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
+		$rootScope
+			.$on('$stateChangeSuccess', function (event) {
+				if (!$window.ga) {
+					return;
+				}
+				$window.ga('send', 'pageview', {page: $location.path()});
+			});
+	}])
 	.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise("/home");
