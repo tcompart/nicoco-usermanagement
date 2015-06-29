@@ -9,44 +9,49 @@ angular.module('nicoco', ['ui.router'])
 				$window.ga('send', 'pageview', {page: $location.path()});
 			});
 	}])
-	.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+		$locationProvider.html5Mode({
+			enabled: true,
+			requireBase: false
+		});
+		$locationProvider.hashPrefix('!');
 
-	$urlRouterProvider.otherwise("/home");
+		$urlRouterProvider.otherwise("/home");
 
-	var home = {
-		name: 'home',
-		url: '/home',
-		templateUrl: '/home.html'
-	};
+		var home = {
+			name: 'home',
+			url: '/home',
+			templateUrl: '/home.html'
+		};
 
-	var aboutme = {
-		name: 'aboutme',
-		url: '/aboutme',
-		templateUrl: '/aboutme.html'
-	};
+		var aboutme = {
+			name: 'aboutme',
+			url: '/aboutme',
+			templateUrl: '/aboutme.html'
+		};
 
-	var offer = {
-		name: 'offer',
-		url: '/offer',
-		templateUrl: '/offer.html'
-	};
+		var offer = {
+			name: 'offer',
+			url: '/offer',
+			templateUrl: '/offer.html'
+		};
 
-	var impressum = {
-		name: 'impressum',
-		url: '/impressum',
-		templateUrl: '/impressum.html'
-	};
+		var impressum = {
+			name: 'impressum',
+			url: '/impressum',
+			templateUrl: '/impressum.html'
+		};
 
-	var gallery = {
-		name: 'gallery',
-		url: '/gallery',
-		templateUrl: '/gallery.html',
-		controller: 'galleryCtrl'
-	};
+		var gallery = {
+			name: 'gallery',
+			url: '/gallery',
+			templateUrl: '/gallery.html',
+			controller: 'galleryCtrl'
+		};
 
-	$stateProvider.state(home);
-	$stateProvider.state(gallery);
-	$stateProvider.state(aboutme);
-	$stateProvider.state(offer);
-	$stateProvider.state(impressum);
-}]);
+		$stateProvider.state(home);
+		$stateProvider.state(gallery);
+		$stateProvider.state(aboutme);
+		$stateProvider.state(offer);
+		$stateProvider.state(impressum);
+	}]);
