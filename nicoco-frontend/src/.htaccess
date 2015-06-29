@@ -228,11 +228,11 @@ AddDefaultCharset utf-8
 
 # Option 1: rewrite www.example.com → example.com
 
-<IfModule mod_rewrite.c>
-    RewriteCond %{HTTPS} !=on
-    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-    RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
-</IfModule>
+#<IfModule mod_rewrite.c>
+#    RewriteCond %{HTTPS} !=on
+#    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#    RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+#</IfModule>
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -241,13 +241,13 @@ AddDefaultCharset utf-8
 # Be aware that the following might not be a good idea if you use "real"
 # subdomains for certain parts of your website.
 
-# <IfModule mod_rewrite.c>
-#    RewriteCond %{HTTPS} !=on
-#    RewriteCond %{HTTP_HOST} !^www\. [NC]
-#    RewriteCond %{SERVER_ADDR} !=127.0.0.1
-#    RewriteCond %{SERVER_ADDR} !=::1
-#    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-# </IfModule>
+<IfModule mod_rewrite.c>
+   RewriteCond %{HTTPS} !=on
+   RewriteCond %{HTTP_HOST} !^www\. [NC]
+   RewriteCond %{SERVER_ADDR} !=127.0.0.1
+   RewriteCond %{SERVER_ADDR} !=::1
+   RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
 
 
 # ##############################################################################
@@ -375,9 +375,9 @@ AddDefaultCharset utf-8
 # http://msdn.microsoft.com/en-us/library/ie/gg622941.aspx
 # http://mimesniff.spec.whatwg.org/
 
-# <IfModule mod_headers.c>
-#     Header set X-Content-Type-Options "nosniff"
-# </IfModule>
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
 
 # ------------------------------------------------------------------------------
 # | Reflected Cross-Site Scripting (XSS) attacks                               |
@@ -412,13 +412,13 @@ AddDefaultCharset utf-8
 # http://blogs.msdn.com/b/ieinternals/archive/2011/01/31/controlling-the-internet-explorer-xss-filter-with-the-x-xss-protection-http-header.aspx
 # https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29
 
-# <IfModule mod_headers.c>
-#     #                           (1)     (2)
-#     Header set X-XSS-Protection "1; mode=block"
-#     <FilesMatch "\.(appcache|crx|css|cur|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|opus|otf|pdf|png|safariextz|svgz?|ttf|vcf|webapp|webm|webp|woff|xml|xpi)$">
-#         Header unset X-XSS-Protection
-#     </FilesMatch>
-# </IfModule>
+<IfModule mod_headers.c>
+    #                           (1)     (2)
+    Header set X-XSS-Protection "1; mode=block"
+    <FilesMatch "\.(appcache|crx|css|cur|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|opus|otf|pdf|png|safariextz|svgz?|ttf|vcf|webapp|webm|webp|woff|xml|xpi)$">
+        Header unset X-XSS-Protection
+    </FilesMatch>
+</IfModule>
 
 # ------------------------------------------------------------------------------
 # | Secure Sockets Layer (SSL)                                                 |
@@ -518,9 +518,9 @@ AddDefaultCharset utf-8
 # Prevent some of the mobile network providers from modifying the content of
 # your site: http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.5.
 
-# <IfModule mod_headers.c>
-#    Header set Cache-Control "no-transform"
-# </IfModule>
+<IfModule mod_headers.c>
+   Header set Cache-Control "no-transform"
+</IfModule>
 
 # ------------------------------------------------------------------------------
 # | ETag removal                                                               |
@@ -644,6 +644,7 @@ FileETag None
 # Enable if you serve a lot of static content but, be aware of the
 # possible disadvantages!
 
-# <IfModule mod_headers.c>
-#    Header set Connection Keep-Alive
-# </IfModule>
+<IfModule mod_headers.c>
+   # Default timeout is 5sec
+   Header set Connection Keep-Alive
+</IfModule>
