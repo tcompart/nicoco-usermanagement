@@ -3,8 +3,6 @@ module.exports = function (grunt) {
 
 	require('load-grunt-tasks')(grunt);
 
-	var mozjpeg = require('imagemin-mozjpeg');
-	
 	grunt.initConfig({
 
 		pkg: grunt.file.readJSON('package.json'),
@@ -319,13 +317,6 @@ module.exports = function (grunt) {
 			scripts: {
 				files: ['<%= config.src %>/**/*.js'],
 				tasks: ['buildScripts']
-			}
-		},
-		sprite:{
-			all: {
-				src: '<%= config.src %>/images/gallery/{,*/}*.{png,jpg,jpeg,gif}',
-				dest: '<%= config.dist %>/images/all.png',
-				destCss: '<%= config.dist %>/styles/sprites.css'
 			}
 		},
 		clean: {
