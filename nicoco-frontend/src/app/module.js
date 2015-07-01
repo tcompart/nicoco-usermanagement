@@ -1,5 +1,5 @@
 angular.module('nicoco', ['ui.router'])
-	.constant('wordpress', 'http://nicoco.de/wordpress')
+	.constant('wordpress', 'http://www.nicoco.de/wordpress')
 	.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
 		$rootScope
 			.$on('$stateChangeSuccess', function (event) {

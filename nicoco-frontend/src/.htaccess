@@ -512,6 +512,10 @@ AddDefaultCharset utf-8
                                       text/xml
     </IfModule>
 
+		<FilesMatch ".(js|css|html|htm|php)$">
+		    SetOutputFilter DEFLATE
+    </FilesMatch>
+
 </IfModule>
 
 # ------------------------------------------------------------------------------
