@@ -4,35 +4,25 @@ angular.module('nicoco')
 		'use strict';
 		return {
 			restrict: 'E',
+			replace: true,
 			scope: {
-				input: '='
+				input: '=',
+				gallery: '='
 			},
-			template: '<section id="photos"><div class="grid-item" ng-repeat="entry in input">' +
-			'<gallery-item image-src="{{ entry.src }}" image-description="{{entry.desc}}"></gallery-item></div></section>'
-		};
-	}]).directive('galleryItem', ['$log', function ($log) {
-		'use strict';
-		return {
-			restrict: 'E',
-			scope: {
-				imageSrc: '@',
-				imageDescription: '@'
-			},
-			template: '<div data-toggle="lightbox"' +
-			' data-title="{{imageDescription}}"><img ng-src="{{imageSrc}}" class="img-responsive thumbnail"></div>',
+			template: '<div id="photos">' +
+			'<a class="grid-item" ng-repeat="entry in input" href="" data-gallery="{{gallery}}" data-toggle="lightbox" data-title="{{entry.desc}}">' +
+			'<img ng-src="{{entry.src}}" class="img-responsive thumbnail" />' +
+			'</a></div>',
 			link: function ($scope, element) {
-				element.bind('click', function (event) {
+				$(element).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
 					event.preventDefault();
-					return element.ekkoLightbox({
+					return $(this).ekkoLightbox({
 						always_show_close: true,
-						remote: $scope.imageSrc,
-						type: 'image',
-						gallery: 'multiimages'
+						remote: $(this).children('img').attr('src'),
+						type: 'image'
 					});
 				});
-				$scope.openLightbox = function ($event) {
-					$event.stopPropagation();
-				};
 			}
+
 		};
 	}]);
