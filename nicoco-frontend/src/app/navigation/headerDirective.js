@@ -5,8 +5,10 @@ angular.module('nicoco').directive('headerDirective', [function () {
 			showCarousel: '=?'
 		},
 		templateUrl: '/header.html',
-		controller: ['$scope', function ($scope) {
-			$scope.showCarousel = angular.isDefined($scope.showCarousel) ? $scope.showCarousel : false;
-		}]
+		bindToController: true,
+		controllerAs: 'header',
+		controller: function () {
+			this.showCarousel = angular.isDefined(this.showCarousel) ? this.showCarousel : false;
+		}
 	};
 }]);
