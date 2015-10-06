@@ -30,7 +30,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "angular": "~1.4.0",
-    "bootstrap": "~3.3.4",
+    "bootstrap": "3.3.4",
     "grunt": "~0.4.5",
     "angular-ui-router": "~0.2.15",
     "ekko-lightbox": "~3.3.0",
