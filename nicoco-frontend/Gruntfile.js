@@ -3,6 +3,10 @@ module.exports = function (grunt) {
 
 	require('load-grunt-tasks')(grunt);
 
+	function angularJsFileInRightOrder(baseDir) {
+		return [baseDir + '/**/module.js', baseDir+'/**/*.js'];
+	}
+	
 	grunt.initConfig({
 
 		pkg: grunt.file.readJSON('package.json'),
@@ -11,7 +15,7 @@ module.exports = function (grunt) {
 			base: '.',
 			src: '<%= config.base %>/src',
 			test: '<%= config.base %>/test',
-			srcJs: ['<%= config.src %>/app/**/module.js', '<%= config.src %>/app/**/*.js'],
+			srcJs: angularJsFileInRightOrder('<%= config.src %>/app'),
 			testJs: '<%= config.test %>/**/*.spec.js',
 			dist: 'dist',
 			temp: '.tmp',
@@ -26,15 +30,15 @@ module.exports = function (grunt) {
 				options: {
 					addRootSlash: false,
 					relative: false,
-					ignorePath: './src/'
+					ignorePath: '<%= config.temp %>/src/'
 				},
-				files: {'<%= config.htmlTemplate %>': ['<%= config.srcJs %>']}
+				files: {'<%= config.htmlTemplate %>': angularJsFileInRightOrder('<%= config.temp %>/src')}
 			},
 			css: {
 				options: {
 					addRootSlash: false,
 					relative: false,
-					ignorePath: './tmp/'
+					ignorePath: '<%= config.temp %>/'
 				},
 				files: {'<%= config.htmlTemplate %>': ['<%= config.temp %>/styles/*.css']}
 			}
@@ -56,10 +60,22 @@ module.exports = function (grunt) {
 				files: [
 					{
 						expand: true,
-						src: ['<%= config.srcJs %>'],
-						dest: '<%= config.temp %>'
+						src: ['<%= config.srcJs %>']
 					}
 				]
+			}
+		},
+		babel: {
+			options: {
+				sourceMap: false
+			},
+			app: {
+				files: [{
+					expand: true,
+					src: ['<%= config.srcJs %>'],
+					dest: '<%= config.temp %>',
+					ext: '.js'
+				}]
 			}
 		},
 		ngtemplates: {
@@ -69,15 +85,6 @@ module.exports = function (grunt) {
 					var splittedPath = templateString.split('/');
 					return '/' + splittedPath[splittedPath.length - 1];
 				}
-			},
-			serve: {
-				cwd: '<%= config.src %>/',
-				src: [
-					'**/*.html',
-					'!index.html',
-					'!404.html'
-				],
-				dest: '<%= config.src %>/app/templates/template.js'
 			},
 			dist: {
 				cwd: '<%= config.src %>',
@@ -177,7 +184,7 @@ module.exports = function (grunt) {
 		usemin: {
 			options: {
 				assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images'],
-				patterns: { 
+				patterns: {
 					js: [
 						[/(images\/.*?\.(?:gif|jpeg|jpg|png|webp))/gm, 'Update the JS to reference our revved images']
 					]
@@ -216,7 +223,7 @@ module.exports = function (grunt) {
 						src: '<%= config.temp %>/concat/scripts/app.js',
 						dest: '<%= config.dist %>/scripts/app.js'
 					}
-					
+
 				]
 			}
 		},
@@ -359,9 +366,11 @@ module.exports = function (grunt) {
 	]);
 	grunt.registerTask('package', [
 		'clean',
-		'wiredep',
 		'ngAnnotate',
+		'jshint',
 		'ngtemplates:dist',
+		'babel',
+		'wiredep',
 		'injector',
 		'concurrent:dist',
 		'useminPrepare',
