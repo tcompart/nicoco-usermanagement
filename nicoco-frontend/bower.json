@@ -36,8 +36,7 @@
     "ekko-lightbox": "~3.3.0",
     "masonry": "~3.3.0",
     "imagesloaded": "~3.1.8",
-    "more-or-less": "~1.5.1",
-    "angular-local-storage": "~0.2.2"
+    "more-or-less": "~1.5.1"
   },
   "overrides": {
     "outlayer": {
