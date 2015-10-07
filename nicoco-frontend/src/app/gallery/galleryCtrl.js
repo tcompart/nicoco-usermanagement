@@ -1,4 +1,5 @@
-angular.module('nicoco').controller('galleryCtrl', ['$scope', 'familyLove', 'portraits', 'loveStories', function ($scope, familyLove, portraits, loveStories) {
+angular.module('nicoco').controller('galleryCtrl', ['familyLove', 'portraits', 'loveStories', 
+	function (familyLove, portraits, loveStories) {
 	$('a[data-toggle]').on('click', function (e) {
 		e.preventDefault();
 		var that = $(this);
@@ -8,7 +9,7 @@ angular.module('nicoco').controller('galleryCtrl', ['$scope', 'familyLove', 'por
 		that.closest('.container').find('div[data-toggle=' + toggleKey + ']').collapse('toggle');
 	});
 
-	$scope.familylove = familyLove;
-	$scope.portraits = portraits;
-	$scope.lovestories = loveStories;
+	this.familylove = familyLove;
+	this.portraits = portraits;
+	this.lovestories = loveStories;
 }]);

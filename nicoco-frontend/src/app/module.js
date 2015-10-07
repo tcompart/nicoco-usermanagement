@@ -46,7 +46,7 @@ angular.module('nicoco', ['ui.router'])
 			name: 'gallery',
 			url: '/gallery',
 			templateUrl: '/gallery.html',
-			controller: 'galleryCtrl'
+			controller: 'galleryCtrl as gallery'
 		};
 
 		$stateProvider.state(home);
