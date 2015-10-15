@@ -17,9 +17,9 @@
 	<!-- endbuild -->
 
 	<!-- build:css styles/main.css -->
-	<!-- injector:css -->
-	<link rel="stylesheet" href="styles/main.css">
-	<!-- endinjector -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="../.tmp/main.css">
+	<!-- endinject -->
 	<!-- endbuild -->
 
 </head>
@@ -36,7 +36,7 @@
 <!-- /container -->
 
 
-<!-- build:js scripts/vendor.js -->
+<!-- build:js scripts/vendor.min.js -->
 <!-- bower:js -->
 <script src="components/jquery/dist/jquery.js"></script>
 <script src="components/angular/angular.js"></script>
@@ -57,8 +57,8 @@
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:js scripts/app.js -->
-<!-- injector:js -->
+<!-- build:js scripts/app.min.js -->
+<!-- inject:js -->
 <script src="app/module.js"></script>
 <script src="app/carousel/carouselDirective.js"></script>
 <script src="app/carousel/slides.js"></script>
@@ -70,7 +70,7 @@
 <script src="app/navigation/headerDirective.js"></script>
 <script src="app/navigation/navigationDirective.js"></script>
 <script src="app/templates/template.js"></script>
-<!-- endinjector -->
+<!-- endinject -->
 <!-- endbuild -->
 
 <script>
