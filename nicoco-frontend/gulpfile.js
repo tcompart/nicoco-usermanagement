@@ -17,17 +17,14 @@ var gulp = require('gulp'),
 	templateCache = require('gulp-angular-templatecache'),
 	plumber = require('gulp-plumber'),
 	sourcemaps = require('gulp-sourcemaps'),
-	notify = require('gulp-notify'),
-	watch = require('gulp-watch');
+	notify = require('gulp-notify');
 
 var image = require('gulp-image');
 
 var bower = require('gulp-bower'),
 	wiredep = require('wiredep').stream;
 
-var connect = require('gulp-connect-php'),
-	browserSync = require('browser-sync'),
-	openResource = require('open');
+var connect = require('gulp-connect-php');
 
 var del = require('del'),
 	rev = require('gulp-rev'),
@@ -35,11 +32,17 @@ var del = require('del'),
 	path = require('path'),
 	join = path.join;
 
-var PORT = 9000,
-	HOSTNAME = 'localhost',
-	SRC = './src',
+var SRC = './src',
 	APP_SRC = './src/app',
 	APP_DEST = './dist';
+
+var CONFIG = {};
+function configure() {
+	var dev = (!!gutil.env.type && gutil.env.type === 'dev');
+	CONFIG.BUILD = dev ? SRC : APP_DEST;
+	CONFIG.ISDEV = dev;
+}
+
 
 /**
  /* ######## UTIL FUNCTIONS ############### */
@@ -78,7 +81,7 @@ gulp.task('compile-less', ['install-deps'], function () {
 		.pipe(plumber({errorHandler: errorLog}))
 		.pipe(less({compress: true}))
 		.pipe(plumber.stop())
-		.pipe(gulp.dest(SRC+'/components'));
+		.pipe(gulp.dest(SRC + '/components'));
 });
 
 gulp.task('inject', ['compile-less'], function () {
@@ -140,7 +143,7 @@ gulp.task('package-images', function (done) {
 });
 
 gulp.task('build', ['clean'], function (done) {
-	runSequence(['build-assets', 'package-images'], 'copy', done);
+	runSequence(['build-assets', 'package-images', 'copy'], done);
 });
 
 gulp.task('build.dev', ['clean'], function (done) {
@@ -151,39 +154,28 @@ gulp.task('build.dev', ['clean'], function (done) {
 /* ########### SERVER #################### */
 /**/
 
-function serveContent(basedir) {
+gulp.task('php', function () {
 	connect.server({
-		port: PORT,
-		hostname: HOSTNAME,
-		base: basedir,
+		hostname: 'localhost',
+		base: CONFIG.BUILD,
 		keepalive: false,
 		open: true
-	});
-}
-
-gulp.task('connect-sync', function () {
-	connect.server({}, function () {
-		browserSync({
-			proxy: HOSTNAME + ':' + PORT
-		});
+	}, function () {
+		gutil.log(gutil.colors.bgMagenta('PHP server up and running.'))
 	});
 });
 
-function watchChanges(folderToWatch) {
-	watch(join(folderToWatch, '**'), function (file) {
-		runSequence('connect-sync', function () {
-			gutil.log('Reloading content because of change on file ' + gutil.colors.blue(file));
-		});
-	});
-}
-
-gulp.task('server.dev', ['build.dev'], function (done) {
-	watchChanges(SRC);
-	serveContent(SRC);
+gulp.task('build.it', function (done) {
+	configure();
+	if (CONFIG.ISDEV) {
+		return runSequence('build.dev', done);
+	} else {
+		return runSequence('build', done);
+	}
 });
-gulp.task('server', ['build'], function (done) {
-	watchChanges(SRC);
-	serveContent(APP_DEST);
+
+gulp.task('server', function (done) {
+	runSequence('build.it', 'php', done);
 });
 
 /**/
