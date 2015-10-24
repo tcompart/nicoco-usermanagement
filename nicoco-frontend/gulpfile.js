@@ -130,8 +130,10 @@ gulp.task('install-deps', function () {
 });
 
 gulp.task('copy', function (done) {
-	return gulp.src([SRC + '/*.*', SRC + '/.*', '!' + SRC + '/*.html'])
+	gulp.src([SRC + '/*.*', SRC + '/.*', '!' + SRC + '/*.html'])
 		.pipe(gulp.dest(APP_DEST));
+	return gulp.src([SRC + '/components/bootstrap/fonts/**'])
+		.pipe(gulp.dest(APP_DEST + '/fonts'));
 });
 
 gulp.task('package-images', function (done) {
