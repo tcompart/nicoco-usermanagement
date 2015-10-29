@@ -163,7 +163,7 @@ gulp.task('php', function () {
 		keepalive: false,
 		open: true
 	}, function () {
-		gutil.log(gutil.colors.bgMagenta('PHP server up and running.'))
+		gutil.log(gutil.colors.bgMagenta('PHP server up and running.'));
 	});
 });
 
