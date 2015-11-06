@@ -1,13 +1,11 @@
 angular.module('nicoco', ['ui.router'])
 	.constant('wordpress', 'http://www.nicoco.de/wordpress')
 	.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
-		$rootScope
-			.$on('$stateChangeSuccess', function (event) {
-				if (!$window.ga) {
-					return;
-				}
+		$rootScope.$on('$stateChangeSuccess', function (event) {
+			if ($window.ga) {
 				$window.ga('send', 'pageview', {page: $location.path()});
-			});
+			}
+		});
 	}])
 	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		$locationProvider.html5Mode({
@@ -21,7 +19,7 @@ angular.module('nicoco', ['ui.router'])
 		var home = {
 			name: 'home',
 			url: '/home',
-			templateUrl: '/home.html'
+			template: ' '
 		};
 
 		var aboutme = {
