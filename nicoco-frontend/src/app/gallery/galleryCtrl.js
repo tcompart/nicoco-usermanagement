@@ -1,5 +1,5 @@
-angular.module('nicoco').controller('galleryCtrl', ['familyLove', 'portraits', 'loveStories', 
-	function (familyLove, portraits, loveStories) {
+angular.module('nicoco').controller('galleryCtrl', ['family', 'portraits', 'pets', 
+	function (family, portraits, pets) {
 	$('a[data-toggle]').on('click', function (e) {
 		e.preventDefault();
 		var that = $(this);
@@ -9,7 +9,7 @@ angular.module('nicoco').controller('galleryCtrl', ['familyLove', 'portraits', '
 		that.closest('.container').find('div[data-toggle=' + toggleKey + ']').collapse('toggle');
 	});
 
-	this.familylove = familyLove;
+	this.family = family;
 	this.portraits = portraits;
-	this.lovestories = loveStories;
+	this.pets = pets;
 }]);

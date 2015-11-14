@@ -1,0 +1,23 @@
+angular.module('nicoco').value('family', [	
+	{src: 'images/family/1.jpg', desc: ''},
+	{src: 'images/family/2.jpg', desc: ''},
+	{src: 'images/family/3.jpg', desc: ''},
+	{src: 'images/family/4.jpg', desc: ''},
+	{src: 'images/family/5.jpg', desc: ''},
+	{src: 'images/family/6.jpg', desc: ''},
+	{src: 'images/family/7.jpg', desc: ''},
+	{src: 'images/family/8.jpg', desc: ''},
+	{src: 'images/family/9.jpg', desc: ''},
+	{src: 'images/family/10.jpg', desc: ''},
+	{src: 'images/family/11.jpg', desc: ''},
+	{src: 'images/family/12.jpg', desc: ''},
+	{src: 'images/family/13.jpg', desc: ''},
+	{src: 'images/family/14.jpg', desc: ''},
+	{src: 'images/family/15.jpg', desc: ''},
+	{src: 'images/family/16.jpg', desc: ''},
+	{src: 'images/family/17.jpg', desc: ''},
+	{src: 'images/family/18.jpg', desc: ''},
+	{src: 'images/family/19.jpg', desc: ''},
+	{src: 'images/family/20.jpg', desc: ''},
+	{src: 'images/family/21.jpg', desc: ''}
+]);

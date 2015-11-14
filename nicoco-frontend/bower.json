@@ -29,21 +29,28 @@
   ],
   "dependencies": {
     "jquery": "~2.1.4",
-    "angular": "~1.4.0",
-    "bootstrap": "3.3.4",
-    "grunt": "~0.4.5",
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6",
     "angular-ui-router": "~0.2.15",
-    "ekko-lightbox": "~3.3.0",
-    "masonry": "~3.3.0",
-    "imagesloaded": "~3.1.8",
+    "angular-messages": "~1.4.8",
+    "ekko-lightbox": "~3.3.3",
+    "masonry": "~3.3.2",
+    "imagesloaded": "~3.2.0",
     "more-or-less": "~1.5.1"
   },
-  "overrides": {
-    "outlayer": {
-      "main": [
-        "item.js",
-        "outlayer.js"
-      ]
-    }
-  }
+	"overrides": {
+		"outlayer": {
+			"main": [
+				"item.js",
+				"outlayer.js"
+			]
+		},
+		"bootstrap": {
+			"main": [
+				"dist/js/bootstrap.js",
+				"dist/css/bootstrap.css",
+				"less/bootstrap.less"
+			]
+		}
+	}
 }
