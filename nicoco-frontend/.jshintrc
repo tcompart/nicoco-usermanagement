@@ -26,6 +26,7 @@
 		"angular": true,
 		"module": true,
 		"inject": true,
-		"spyOn": true
+		"spyOn": true,
+		"CryptoJS": true
 	}
 }

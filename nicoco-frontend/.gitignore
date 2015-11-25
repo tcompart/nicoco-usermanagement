@@ -5,5 +5,7 @@ node_modules
 .DS_Store
 npm-debug.log
 dist
+composer.lock
 src/components
+src/server/libs
 src/app/templates/template.js

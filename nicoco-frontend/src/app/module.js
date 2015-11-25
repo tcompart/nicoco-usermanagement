@@ -1,4 +1,4 @@
-angular.module('nicoco', ['ui.router'])
+angular.module('nicoco', ['ui.router', 'ngMessages'])
 	.constant('wordpress', 'http://www.nicoco.de/wordpress')
 	.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
 		$rootScope.$on('$stateChangeSuccess', function (event) {
@@ -16,40 +16,35 @@ angular.module('nicoco', ['ui.router'])
 
 		$urlRouterProvider.otherwise("/home");
 
-		var home = {
+		$stateProvider.state({
 			name: 'home',
 			url: '/home',
 			template: ' '
-		};
-
-		var aboutme = {
-			name: 'aboutme',
-			url: '/aboutme',
-			templateUrl: '/aboutme.html'
-		};
-
-		var offer = {
-			name: 'offer',
-			url: '/offer',
-			templateUrl: '/offer.html'
-		};
-
-		var impressum = {
-			name: 'impressum',
-			url: '/impressum',
-			templateUrl: '/impressum.html'
-		};
-
-		var gallery = {
+		});
+		$stateProvider.state({
 			name: 'gallery',
 			url: '/gallery',
 			templateUrl: '/gallery.html',
 			controller: 'galleryCtrl as gallery'
-		};
-
-		$stateProvider.state(home);
-		$stateProvider.state(gallery);
-		$stateProvider.state(aboutme);
-		$stateProvider.state(offer);
-		$stateProvider.state(impressum);
+		});
+		$stateProvider.state({
+			name: 'aboutme',
+			url: '/aboutme',
+			templateUrl: '/aboutme.html'
+		});
+		$stateProvider.state({
+			name: 'offer',
+			url: '/offer',
+			templateUrl: '/offer.html'
+		});
+		$stateProvider.state({
+			name: 'login',
+			url: '/login',
+			templateUrl: '/login.html'
+		});
+		$stateProvider.state({
+			name: 'impressum',
+			url: '/impressum',
+			templateUrl: '/impressum.html'
+		});
 	}]);

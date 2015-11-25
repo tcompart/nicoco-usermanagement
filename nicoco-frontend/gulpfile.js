@@ -22,6 +22,7 @@ var gulp = require('gulp'),
 var image = require('gulp-image');
 
 var bower = require('gulp-bower'),
+	composer = require('gulp-composer'),
 	wiredep = require('wiredep').stream;
 
 var connect = require('gulp-connect-php');
@@ -124,6 +125,7 @@ gulp.task('build-assets', ['install-deps', 'templates', 'inject'], function () {
 
 gulp.task('install-deps', function () {
 	bower();
+	composer({ bin: 'composer' });
 	return gulp.src(SRC + '/*.html')
 		.pipe(wiredep())
 		.pipe(gulp.dest(SRC));
@@ -156,6 +158,11 @@ gulp.task('build.dev', ['clean'], function (done) {
 /* ########### SERVER #################### */
 /**/
 
+gulp.task('watch', function (done) {
+	gulp.watch([SRC+'/**/*.*', '!'+SRC+'/**/template.js'], ['build.it']);
+	return done;
+});
+
 gulp.task('php', function () {
 	connect.server({
 		hostname: 'localhost',
@@ -177,7 +184,7 @@ gulp.task('build.it', function (done) {
 });
 
 gulp.task('server', function (done) {
-	runSequence('build.it', 'php', done);
+	runSequence('build.it', 'php', 'watch', done);
 });
 
 /**/

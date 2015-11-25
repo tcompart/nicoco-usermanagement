@@ -9,7 +9,8 @@ angular.module('nicoco').directive('navigation', [function () {
 				{title: 'Galerien', link: '/gallery'},
 				{title: 'Über mich', link: '/aboutme'},
 				{title: 'Angebote', link: '/offer'},
-				{title: 'Blog', link: '/wordpress/', deeplink: true }
+				{title: 'Blog', link: '/wordpress/', deeplink: true },
+				{title: 'Kunden-Login', link: '/login'}
 			];
 		}
 	};
