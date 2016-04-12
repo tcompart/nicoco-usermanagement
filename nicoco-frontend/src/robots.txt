@@ -1,8 +1,0 @@
-Sitemap: sitemap.xml
-
-# Allow crawling of allowed content
-User-agent: *
-Disallow: /wordpress/wp-admin/
-Disallow: /wordpress/trackback/
-Disallow: /wordpress/xmlrpc.php
-Disallow: /wordpress/comments/feed/
